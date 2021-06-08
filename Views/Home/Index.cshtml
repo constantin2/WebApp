@@ -1,0 +1,29 @@
+@model WebApp.ViewModels.RestaurantViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OdeToFood</title>
+</head>
+<body>
+    <h1>@Model.MessageOfTheDay</h1>
+    <table>
+        @foreach (var item in Model.Restaurants)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>
+                    <a href="/home/details/@item.Id">Details</a>
+                    @Html.ActionLink("Go", "Details", new {id=item.Id})
+                    <a asp-action="Details" asp-route-id="@item.Id">More</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <a asp-action="Create">Add Restaurant</a>
+</body>
+</html>
